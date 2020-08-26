@@ -1,0 +1,452 @@
+/* Global Remedies
+******************/
+
+/* Use border-box by default, globally */
+*, ::before, ::after { box-sizing: border-box; }
+
+/*
+* Consistent line spacing...
+* CSS Inline Layout Module Level 3: https://drafts.csswg.org/css-inline-3/#line-sizing-property
+*/
+html { line-sizing: normal; }
+
+/* Remove the tiny space around the edge of the page */
+body { margin: 0; }
+
+
+/* Headings
+***********/
+
+/* Switch to rem units for headings */
+/* @@@ Initial values are based on existing browser defaults */
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.17rem; }
+h4 { font-size: 1.00rem; }
+h5 { font-size: 0.83rem; }
+h6 { font-size: 0.67rem; }
+
+/* Keep h1 margins consistent, even when nested */
+h1 { margin: 0.67em 0; }
+
+
+/* Typography
+*************/
+
+/* Overflow by default is bad */
+pre { white-space: pre-wrap; }
+
+/*
+* 1. Solid, thin horizontal rules
+* 2. Remove Firefox `color: gray`
+* 3. Remove default `1px` height, and common `overflow: hidden`
+*/
+hr {
+  border-style: solid;
+  border-width: 1px 0 0;
+  color: inherit;
+  height: 0;
+  overflow: visible;
+}
+
+
+/* Embedded Elements
+********************/
+
+/*
+* 1. Block display is usually what we want
+* 2. Remove strange space-below when inline
+* 3. Responsive by default
+*/
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+/*
+* Maintain intrinsic aspect ratios when `max-width` is applied
+* (iframe, embed, and object have no intrinsic ratio, set height explicitly)
+*/
+img, svg, video, canvas {
+  height: auto;
+}
+
+/*
+* There is no good reason elements default to 300px,
+* and audio files are unlikely to come with a width attribute
+*/
+audio { width: 100%; }
+
+
+/* Old Browsers
+***************/
+
+/* Remove the border on images inside links in IE 10 and earlier */
+img { border-style: none; }
+
+/* Hide the overflow in IE 10 and earlier */
+svg { overflow: hidden; }
+
+/* Default block display on HTML5 elements */
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+/*
+* 1. Add the correct box sizing in IE 10
+* 2. Remove the padding in IE 10
+*/
+[type='checkbox'],
+[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+
+
+
+
+/* Material Icons
+******************/
+
+// https://material.io/resources/icons/?icon=gps_not_fixed&style=outline
+@import url(//fonts.googleapis.com/icon?family=Material+Icons+Outlined);
+
+/* Rules for sizing the icon. */
+.material-icons-outlined {
+  &.md-18 { font-size: 18px; }
+  &.md-24 { font-size: 24px; }
+  &.md-36 { font-size: 36px; }
+  &.md-48 { font-size: 48px; }
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons-outlined.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons-outlined.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons-outlined.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons-outlined.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+
+
+
+
+/* Site Styles
+******************/
+
+// BREAKPOINTS
+// https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
+
+:root {
+  
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+
+  &.bgdefault { background: #fff; }
+  &.bg01d { background: linear-gradient(#0A5899, #B4CFE0); }	
+  &.bg01n { background: linear-gradient(#001748, #2C4E7B); }
+  &.bg02d { background: linear-gradient(#5D6A78, #DFDDE3); }
+  &.bg02n { background: linear-gradient(#010418, #0F1E46); }
+  &.bg03d { background: linear-gradient(#5D6A78, #DFDDE3); }
+  &.bg03n { background: linear-gradient(#010418, #0F1E46); }
+  &.bg04d { background: linear-gradient(#5D6A78, #DFDDE3); }
+  &.bg04n { background: linear-gradient(#010418, #0F1E46); }
+  &.bg09d { background: linear-gradient(#5D6A78, #DFDDE3); }
+  &.bg09n { background: linear-gradient(#010418, #0F1E46); }
+  &.bg10d { background: linear-gradient(#5D6A78, #DFDDE3); }
+  &.bg10n { background: linear-gradient(#010418, #0F1E46); }
+  &.bg11d { background: linear-gradient(#EFE0E1, #020512); }
+  &.bg11n { background: linear-gradient(#322634, #B095A0); }
+  &.bg13d { background: linear-gradient(#E0E9F4, #F0F1F5); }
+  &.bg13n { background: linear-gradient(#0F3462, #A89994); }
+  &.bg50d { background: linear-gradient(#DED6E9, #A5ADBE); }
+  &.bg50n { background: linear-gradient(#1A1321, #95C7E4); }
+}
+  
+a {
+  color: #00B7FF;
+}
+
+.header {
+  background-color: #111;
+  border-bottom: 1px solid #333;
+  display: grid;
+  padding: 1rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  grid-template-columns: repeat(2, min-content) 1fr max-content;
+  align-items: center;
+
+  &__title {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 100;
+    margin: 0 0 0 .5rem;
+  }
+
+  &__search-form {
+    justify-self: center;
+    position: relative;
+    width: 60%;
+
+    & input {
+      font-size: inherit;
+      font-family: inherit;
+      padding: 0.5rem 6rem .5rem 2rem;
+      width: 100%;
+    }
+
+    & button {
+      font-size: inherit;
+      font-family: inherit;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    & .current-location {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      left: 3px;
+      margin: 0 1.5rem 0 0;
+      outline: none;
+      padding: .15rem;
+      top: 5px;
+    }
+
+    & .current-location:hover i {
+      color: #00B7FF;
+    }
+
+    .search-form__btn {
+      padding: .5rem;
+    }
+    
+  }
+
+  &__tmp-switch {
+    position: relative;
+  
+    & span {
+      color: #999;
+    }
+  
+  }
+
+}
+
+.container {
+  padding: 2rem;
+}
+
+.weather-forecast {
+  background-color: rgba(255, 255, 255, .9);
+  border-radius: 3px;
+  display: grid;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.54);
+  grid-template-columns: 1fr 2fr;
+  column-gap: 2rem;
+  min-height: calc(100vh - 13rem);
+  padding: 2rem; 
+}
+
+.weather-forecast__daily {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: max-content 1fr;
+  grid-template-areas: 
+    'title title title title title'
+    'day1 day2 day3 day4 day5';
+  column-gap: 1rem;
+
+  & .title {
+    grid-area: title;
+  }
+
+  & article {
+    & h3 { text-align: center; }
+
+    & img { margin: 1rem auto; }
+  }
+
+}
+
+.footer {
+  color: #fff;
+  background-color: #111;
+  border-top: 1px solid #333;
+  bottom: 0;
+  padding: .5rem 2rem;
+  position: -webkit-sticky;
+  position: sticky;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a:link,
+  a:hover,
+  a:visited {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+}
+
+
+/* Custom Switch Style
+******************/
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type="checkbox"],
+  input[type="radio"] {
+    --active: #00B7FF;
+    --active-inner: #fff;
+    --focus: 2px rgba(39, 94, 254, 0.3);
+    --border: #bbc1e1;
+    --border-hover: #00B7FF;
+    --background: #fff;
+    --disabled: #f6f8ff;
+    --disabled-inner: #e1e6f9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 21px;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    border: 1px solid var(--bc, var(--border));
+    background: var(--b, var(--background));
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+    &:after {
+      content: "";
+      display: block;
+      left: 0;
+      top: 0;
+      position: absolute;
+      transition: transform var(--d-t, 0.3s) var(--d-t-e, ease),
+        opacity var(--d-o, 0.2s);
+    }
+    &:checked {
+      --b: var(--active);
+      --bc: var(--active);
+      --d-o: 0.3s;
+      --d-t: 0.6s;
+      --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+    }
+    &:disabled {
+      --b: var(--disabled);
+      cursor: not-allowed;
+      opacity: 0.9;
+      &:checked {
+        --b: var(--disabled-inner);
+        --bc: var(--border);
+      }
+      & + label {
+        cursor: not-allowed;
+      }
+    }
+    &:hover {
+      &:not(:checked) {
+        &:not(:disabled) {
+          --bc: var(--border-hover);
+        }
+      }
+    }
+    &:focus {
+      box-shadow: 0 0 0 var(--focus);
+    }
+    &:not(.switch) {
+      width: 21px;
+      &:after {
+        opacity: var(--o, 0);
+      }
+      &:checked {
+        --o: 1;
+      }
+    }
+    & + label {
+      font-size: 14px;
+      line-height: 21px;
+      display: inline-block;
+      vertical-align: top;
+      cursor: pointer;
+      margin-left: 4px;
+      position: absolute;
+      left: -99999rem;
+    }
+    & ~ span.after { margin-left: 0.5rem; }
+  }
+  input[type="checkbox"] {
+    &:not(.switch) {
+      border-radius: 7px;
+      &:after {
+        width: 5px;
+        height: 9px;
+        border: 2px solid var(--active-inner);
+        border-top: 0;
+        border-left: 0;
+        left: 7px;
+        top: 4px;
+        transform: rotate(var(--r, 20deg));
+      }
+      &:checked {
+        --r: 43deg;
+      }
+    }
+    &.switch {
+      width: 38px;
+      border-radius: 11px;
+      &:after {
+        left: 2px;
+        top: 2px;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        background: var(--ab, var(--border));
+        transform: translateX(var(--x, 0));
+      }
+      &:checked {
+        --ab: var(--active-inner);
+        --x: 17px;
+      }
+      &:disabled {
+        &:not(:checked) {
+          &:after {
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+  }
+  input[type="radio"] {
+    border-radius: 50%;
+    &:after {
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: var(--active-inner);
+      opacity: 0;
+      transform: scale(var(--s, 0.7));
+    }
+    &:checked {
+      --s: 0.5;
+    }
+  }
+}
+
+

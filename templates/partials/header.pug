@@ -1,0 +1,23 @@
+header.header
+    a(href='/' title='WeatherApp Home')
+        i.material-icons-outlined.md-48.md-light landscape
+    
+    h1.header__title WeatherApp
+
+    form.header__search-form#search-location-form
+        label(for=location)
+        input#location-input(
+        type='text' 
+        name='location' 
+        required
+        )
+        button.search-form__btn(type='submit') Search
+
+        button#current-location.current-location
+            i.material-icons-outlined.md-dark gps_not_fixed
+
+    .header__tmp-switch
+        span.before Metric: &#8451;, m/s
+        input#s1.switch(type="checkbox")
+        label(for="s1") Temperature Units
+        span.after Imperial: &#8457;, mph
