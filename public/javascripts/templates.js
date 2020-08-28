@@ -4,8 +4,22 @@ import {
     getCardinal
 } from './utils.js';
 
-const iconURL = icon => 
-        `<img src="http://openweathermap.org/img/wn/${icon}.png" />`;
+const iconURL = (icon, size) => {
+    let iconSize = '';
+
+    switch (size) {
+        case 'l':
+            iconSize = '@4x';
+            break
+        case 'm':
+            iconSize = '@2x';
+            break;
+        default:
+            iconSize = '';
+    }
+
+    return `<img src="http://openweathermap.org/img/wn/${icon}${iconSize}.png" />`;
+}
 
 const renderCurrentForecast = (forecast) => {
     const { 
@@ -27,7 +41,7 @@ const renderCurrentForecast = (forecast) => {
     } = forecast;
 
     return `
-        ${iconURL(weather[0].icon)}
+        ${iconURL(weather[0].icon, 'l')}
         <p>Current tmp: ${temp.toFixed(1)} ${tempUnit}</p>
         <p>Feels like: ${feels_like.toFixed(1)} ${tempUnit}</p>
         <p>${weather[0].description}</p>
@@ -70,7 +84,7 @@ const renderFiveDayForecast = (forecast) => {
         wfdTpl = wfdTpl + `
             <article class="day${index}">
                 <h3>${formatDate(dt*1000, 'short')}</h3>
-                ${iconURL(weather[0].icon)}
+                ${iconURL(weather[0].icon, 's')}
                 <p>Max: ${temp.max.toFixed(1)} ${tempUnit}</p>
                 <p>Min: ${temp.min.toFixed(1)} ${tempUnit}</p>
                 <p>${weather[0].description}</p>
