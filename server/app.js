@@ -4,10 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
-var postcssMiddleware = require('postcss-middleware');
-const autoprefixer = require('autoprefixer');
-
-
 const indexRouter = require('./routes/index');
 
 const app = express();
@@ -22,23 +18,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(sassMiddleware({
-  src: __dirname,
+  src: path.join(__dirname, '../'),
   dest: path.join(__dirname, '../public'),
   debug: true,
   outputStyle: 'compressed'
 }));
-
-// app.use(postcssMiddleware({
-//   plugins: [
-//     /* Plugins */
-//     autoprefixer({
-//       /* Options */
-//     })
-//   ],
-//   src: function(req) {
-//     return path.join('public/stylesheets', req.url);
-//   }
-// }));
 
 app.use(express.static(path.join(__dirname, '../public')));
 

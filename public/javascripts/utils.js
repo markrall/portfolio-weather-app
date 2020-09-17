@@ -18,9 +18,7 @@ const formatDate = (stamp, format) => {
 
   return format === 'short'
     ? timestamp.toLocaleDateString('en-UK', {
-      weekday: 'short',
-      day: 'numeric',
-      month: 'short'
+      weekday: 'short'
     })
     : timestamp.toLocaleDateString('en-UK', {
       weekday: 'long',
@@ -55,6 +53,12 @@ const fetchUnitPref = (tempSwitch) => {
   return !tempSwitch.checked ? 'metric' : 'imperial';
 };
 
+const toSentenceCase = str => 
+  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+const formatNum = num => 
+  num.toFixed(0);
+
 
 export { 
   formatDate, 
@@ -62,5 +66,7 @@ export {
   getCardinal,
   fetchTempUM,
   fetchSpeedUM,
-  fetchUnitPref
+  fetchUnitPref,
+  toSentenceCase,
+  formatNum
 };

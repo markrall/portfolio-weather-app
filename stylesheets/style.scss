@@ -180,6 +180,7 @@ a {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index: 10;
 
   grid-template-columns: repeat(2, min-content) 1fr max-content;
   align-items: center;
@@ -224,6 +225,8 @@ a {
 
     & .current-location:hover i {
       color: #00B7FF;
+      -webkit-animation: pulsate 1s infinite;
+      animation: pulsate 1s infinite;
     }
 
     .search-form__btn {
@@ -243,41 +246,167 @@ a {
 
 }
 
+@keyframes pulsate {
+  0% {
+      transform: scale(1);
+      box-shadow: none;
+  }
+
+  50% {
+      transform: scale(.9);
+      box-shadow: 0 1rem 4rem rgba(0,0,0, .25);
+  }
+
+  100% {
+      transform: scale(1);
+      box-shadow: none;
+  }
+}
+
 .container {
   padding: 2rem;
+
+  & > h2 {
+    color: #fff;
+    margin-bottom: 3rem;
+    text-shadow: 0 2px 2px rgba(0,0,0, .75);
+  }
 }
 
 .weather-forecast {
-  background-color: rgba(255, 255, 255, .9);
   border-radius: 3px;
-  display: grid;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.54);
-  grid-template-columns: 1fr 2fr;
-  column-gap: 2rem;
-  min-height: calc(100vh - 13rem);
-  padding: 2rem; 
-}
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  min-height: calc(100vh - 18rem);
+  padding: .5rem 0; 
 
-.weather-forecast__daily {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: max-content 1fr;
-  grid-template-areas: 
-    'title title title title title'
-    'day1 day2 day3 day4 day5';
-  column-gap: 1rem;
+  &__current, &__daily {
+    padding: .5rem;
 
-  & .title {
-    grid-area: title;
+    article{
+      background-color: rgba(0,0,0,0.65);
+      border-bottom: 1px solid #111;
+      border-top: 1px solid #222;
+      border-left: 1px solid #222;
+      border-right: 1px solid #111;
+      border-radius: 3px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.54);
+      color: #fff;
+      padding: .5rem;
+      position: relative;
+
+      img {
+        margin: 0 auto;
+        position: absolute;
+      }
+
+      h4, h5 {
+        text-align: center;
+        text-shadow: 0 2px 2px rgba(0,0,0, .75);
+      }
+
+      ul {
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0;
+      }
+
+      li {
+        line-height: 2rem;
+        margin-bottom: .5rem;
+
+        svg {
+          width: 1.5rem;
+          height: 1.5rem;
+          fill: #fff;
+          margin-right: .5rem;
+          display: inline-block;
+        }
+      }
+
+    }
+    
   }
 
-  & article {
-    & h3 { text-align: center; }
+  &__current {
+    flex: 0 0 18rem;
+    margin-bottom: 4rem;
 
-    & img { margin: 1rem auto; }
+    article {
+      min-width: 18rem;
+
+      h4 {
+        margin-top: 5.5rem;
+      }
+
+      img {
+        left: 50%;
+        transform: translate(-50%, -50%)
+      }
+
+      .current-temp {
+        left: 50%;
+        font-size: 3rem;
+        letter-spacing: -3px;
+        position: absolute;
+        top: 1rem;
+        text-shadow: 0 2px 2px rgba(0,0,0, .54);
+
+        sup {
+          font-size: 1.5rem;
+        }
+      }
+
+      .feels-like {
+        position: absolute;
+        top: 4.25rem;
+        left: 51%;
+        font-size: .75rem;
+        text-shadow: 0 2px 2px rgba(0,0,0,.54)
+      }
+
+    }
+
+  }
+
+  &__daily {
+    flex: 1 1 16rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: flex-start;
+
+    article {
+      font-size: .7rem;
+      min-width: 4rem;
+      flex: 0 0 10rem;
+      margin: 0 .5rem 4rem .5rem;
+
+      img {
+        left: 50%;
+        transform: translate(-50%, -70%);
+      }
+
+      li {
+        line-height: 1.75rem;
+        margin-bottom: .25rem;
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+          margin-right: .4rem;
+        }
+
+      }
+
+    }
+  
   }
 
 }
+  
 
 .footer {
   color: #fff;

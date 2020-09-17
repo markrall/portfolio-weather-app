@@ -24,7 +24,8 @@ const cfg = {
     unitPref: 'metric',
     tempUnit: '&#8451;',
     speedUnit: 'm/s',
-    position: ''
+    position: '',
+    placename: ''
 };
 
 
@@ -57,7 +58,7 @@ const fetchWeatherData = () => {
         .then(data => {
             if (data.error) {
                 console.error(data.error);
-                console.log('Invalide coordinates');
+                console.log('Invalid coordinates');
             } else {
                 bodyElem.setAttribute('class', 
                     `bg${data.data.current.weather[0].icon}`);
@@ -73,6 +74,8 @@ const fetchWeatherData = () => {
 const fetchCurrentLocation = (cb) => {
     navigator.geolocation.getCurrentPosition((position) => {
         cfg.position = position;
+        // all coord based search logic passes through here
+        // update cfg.placename with return of reverse goecode lookup
         cb();
     });
 

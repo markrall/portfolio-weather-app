@@ -1,7 +1,9 @@
 import { 
     formatDate, 
     formatTime, 
-    getCardinal
+    getCardinal,
+    toSentenceCase,
+    formatNum
 } from './utils.js';
 
 const iconURL = (icon, size) => {
@@ -41,19 +43,57 @@ const renderCurrentForecast = (forecast) => {
     } = forecast;
 
     return `
-        ${iconURL(weather[0].icon, 'l')}
-        <p>Current tmp: ${temp.toFixed(1)} ${tempUnit}</p>
-        <p>Feels like: ${feels_like.toFixed(1)} ${tempUnit}</p>
-        <p>${weather[0].description}</p>
-        <p>Wind: ${wind_speed} ${speedUnit} ${getCardinal(wind_deg)}</p>
-        <p>Pressure: ${pressure}hPa</p>
-        <p>Humidity: ${humidity}%</p>
-        <p>UV Index: ${uvi.toFixed(0)}</p>
-        <p>Sunrise: ${formatTime(sunrise*1000)}</p>
-        <p>Sunset: ${formatTime(sunset*1000)}</p>
-        <p>Dewpoint: ${dew_point.toFixed(1)} ${tempUnit}</p>
-        <p>Visbility: ${visibility/1000} km</p>
-        <p><small>Data retrieved at: ${time}.</small></p>
+        <article>
+            ${iconURL(weather[0].icon, 'l')}
+
+            <h4>${toSentenceCase(weather[0].description)}</h4>
+            <span class="current-temp">${formatNum(temp)} <sup>${tempUnit}</sup></span>
+            <span class="feels-like">Feels like ${formatNum(feels_like)} <sup>${tempUnit}</sup></span>
+
+            <ul>
+                <li>
+                    <svg>
+                        <use xlink:href="/images/svg/symbol-defs.svg#icon-wind"></use>
+                    </svg> 
+                    Wind: ${wind_speed} ${speedUnit} ${getCardinal(wind_deg)}</li>
+                <li>
+                    <svg>
+                        <use xlink:href="/images/svg/symbol-defs.svg#icon-compass-west"></use>
+                    </svg> 
+                    Pressure: ${pressure}hPa</li>
+                <li>
+                    <svg>
+                        <use xlink:href="/images/svg/symbol-defs.svg#icon-raindrop"></use>
+                    </svg> 
+                    Humidity: ${humidity}%</li>
+                <li>
+                    <svg>
+                        <use xlink:href="/images/svg/symbol-defs.svg#icon-sun"></use>
+                    </svg> 
+                    UV Index: ${formatNum(uvi)}</li>
+                <li>
+                    <svg>
+                        <use xlink:href="/images/svg/symbol-defs.svg#icon-raindrop"></use>
+                    </svg> 
+                    Dewpoint: ${formatNum(dew_point)} <sup>${tempUnit}</sup></li>
+                <li>
+                    <svg>
+                        <use xlink:href="/images/svg/symbol-defs.svg#icon-eye"></use>
+                    </svg> 
+                    Visbility: ${visibility/1000} km</li>
+                <li>
+                    <svg>
+                        <use xlink:href="/images/svg/symbol-defs.svg#icon-sunrise"></use>
+                    </svg> 
+                    Sunrise: ${formatTime(sunrise*1000)}</li>
+                <li>
+                    <svg>
+                        <use xlink:href="/images/svg/symbol-defs.svg#icon-sunset"></use>
+                    </svg> 
+                    Sunset: ${formatTime(sunset*1000)}</li>
+            </ul>      
+            <p><small>Data retrieved at: ${time}.</small></p>
+        </article>
     `;
 
 };
@@ -64,7 +104,7 @@ const renderFiveDayForecast = (forecast) => {
         tempUnit,
         speedUnit
     } = forecast;
-    let wfdTpl = `<h2 class="title">5 day forecast</h2>`;
+    let wfdTpl = ``;
 
     daily.map((value, index) => {
         const {
@@ -83,16 +123,45 @@ const renderFiveDayForecast = (forecast) => {
 
         wfdTpl = wfdTpl + `
             <article class="day${index}">
-                <h3>${formatDate(dt*1000, 'short')}</h3>
-                ${iconURL(weather[0].icon, 's')}
-                <p>Max: ${temp.max.toFixed(1)} ${tempUnit}</p>
-                <p>Min: ${temp.min.toFixed(1)} ${tempUnit}</p>
-                <p>${weather[0].description}</p>
-                <p>Wind: ${wind_speed} ${speedUnit} ${getCardinal(wind_deg)}</p>
-                <p>Pressure: ${pressure}hPa</p>
-                <p>Humidity: ${humidity}%</p>
-                <p>UV Index: ${uvi.toFixed(0)}</p>
-                <p>Dewpoint: ${dew_point.toFixed(1)} ${tempUnit}</p>
+                ${iconURL(weather[0].icon, 'm')} 
+
+                <h4>${formatDate(dt*1000, 'short')}</h4>
+
+                <h5>${toSentenceCase(weather[0].description)}</h5>
+
+                <ul>
+                    <li>
+                        <svg>
+                            <use xlink:href="/images/svg/symbol-defs.svg#icon-thermometer-half"></use>
+                        </svg> 
+                        ${formatNum(temp.min)} <sup>${tempUnit}</sup>  / 
+                        ${formatNum(temp.max)} <sup>${tempUnit}</sup></li>
+                    <li>
+                        <svg>
+                            <use xlink:href="/images/svg/symbol-defs.svg#icon-wind"></use>
+                        </svg> 
+                        ${wind_speed} ${speedUnit} ${getCardinal(wind_deg)}</li>
+                    <li>
+                        <svg>
+                            <use xlink:href="/images/svg/symbol-defs.svg#icon-compass-west"></use>
+                        </svg> 
+                        ${pressure}hPa</li>
+                    <li>
+                        <svg>
+                            <use xlink:href="/images/svg/symbol-defs.svg#icon-raindrop"></use>
+                        </svg> 
+                        ${humidity}%</li>
+                    <li>
+                        <svg>
+                            <use xlink:href="/images/svg/symbol-defs.svg#icon-sun"></use>
+                        </svg> 
+                        ${formatNum(uvi)}</li>
+                    <li>
+                        <svg>
+                            <use xlink:href="/images/svg/symbol-defs.svg#icon-raindrop"></use>
+                        </svg> 
+                        ${formatNum(dew_point)} <sup>${tempUnit}</sup></li>
+                </ul>
             </article>
         `;
     });
