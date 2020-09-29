@@ -6,7 +6,7 @@
 
 A personal project based on [The Complete Node.js Developer Course (3rd Edition)](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13819540#overview) by [Andrew Mead](https://www.udemy.com/user/andrewmead/) on Udemy. One of the projects involved building a basic weather app to search for a location and return the current weather conditions.
 
-I decided to rebuild the app from memory using everything I'd learnt since taking the course. The major changes include:
+I decided to rebuild my [first attempt](https://pbm-nodejs-weather-app.herokuapp.com/) from memory using everything I'd learnt since taking the course. The major changes include:
 
 - Changing the weather service provider to OpenWeather
 - Integrating node-sass to write modular CSS
