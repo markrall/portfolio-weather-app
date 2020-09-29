@@ -1,15 +1,18 @@
 header.header
-    a(href='/' title='WeatherApp Home')
-        i.material-icons-outlined.md-48.md-light landscape
+    div.header__brand
+        a(href='/' title='WeatherApp Home')
+            i.material-icons-outlined.md-48.md-light landscape
     
-    h1.header__title WeatherApp
+        h1.header__title WeatherApp
 
     form.header__search-form#search-location-form
         label(for=location)
         input#location-input(
         type='text' 
         name='location' 
+        placeholder='Enter city or suburb...'
         required
+        autofocus
         )
         button.search-form__btn(type='submit') Search
 

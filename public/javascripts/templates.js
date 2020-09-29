@@ -169,14 +169,6 @@ const renderFiveDayForecast = (forecast) => {
     return wfdTpl;
 };
 
-
-
-
-
-
-
-
-
 export {
     iconURL,
     renderCurrentForecast,

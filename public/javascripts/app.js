@@ -18,6 +18,7 @@ const searchLocationForm = $('#search-location-form');
 const locationInput = $('#location-input');
 const useCurrentLocation = $('#current-location');
 const tempSwitch = $('#s1');
+const wfLocName = $("#wf-loc-name");
 const wfcDiv = $('#wfc');
 const wfdDiv = $('#wfd');
 const cfg = {
@@ -47,8 +48,8 @@ const renderForecast = (obj) => {
 
 
 const fetchWeatherData = () => {
-    const { coords, timestamp } = cfg.position;
-    const { latitude, longitude} = coords;
+    const { coords, place_name, timestamp } = cfg.position;
+    const { latitude, longitude } = coords;
     const time = `${formatDate(timestamp)} ${formatTime(timestamp)}`;
     const lang = 'en';
     const url = `/weather?lat=${latitude}&lon=${longitude}&unt=${cfg.unitPref}&lan=${lang}`;
@@ -62,7 +63,8 @@ const fetchWeatherData = () => {
             } else {
                 bodyElem.setAttribute('class', 
                     `bg${data.data.current.weather[0].icon}`);
-                renderForecast({time, data});
+                wfLocName.innerHTML = place_name;
+                renderForecast({ time, data });
             }
             
         })
@@ -72,11 +74,18 @@ const fetchWeatherData = () => {
 
 
 const fetchCurrentLocation = (cb) => {
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition(pos => {
+      cfg.position = pos;
+
+      const { latitude, longitude } = cfg.position.coords;
+      const locationString = `${longitude},${latitude}`;
+
+      fetchLocationData(locationString, position => {
         cfg.position = position;
-        // all coord based search logic passes through here
-        // update cfg.placename with return of reverse goecode lookup
         cb();
+      });
+
+      
     });
 
 };
@@ -127,7 +136,6 @@ tempSwitch.addEventListener('change', (event) => {
 
 searchLocationForm.addEventListener('submit', (event) => {
     event.preventDefault();
-
     fetchLocationData(locationInput.value, position => {
         cfg.position = position;
         fetchWeatherData();

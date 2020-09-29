@@ -146,6 +146,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   min-height: 100vh;
+  min-width: 330px;
 
   &.bgdefault { background: #fff; }
   &.bg01d { background: linear-gradient(#0A5899, #B4CFE0); }	
@@ -175,15 +176,23 @@ a {
 .header {
   background-color: #111;
   border-bottom: 1px solid #333;
-  display: grid;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
   padding: 1rem;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 10;
 
-  grid-template-columns: repeat(2, min-content) 1fr max-content;
-  align-items: center;
+  &__brand {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1rem;
+  }
 
   &__title {
     color: #fff;
@@ -195,12 +204,14 @@ a {
   &__search-form {
     justify-self: center;
     position: relative;
-    width: 60%;
+    width: 50%;
+    min-width: 20rem;
 
     & input {
       font-size: inherit;
       font-family: inherit;
       padding: 0.5rem 6rem .5rem 2rem;
+      outline: none;
       width: 100%;
     }
 
@@ -230,13 +241,18 @@ a {
     }
 
     .search-form__btn {
-      padding: .5rem;
+      background-color: #333;
+      color: #eee;
+      border: none;
+      padding: .5rem 1rem;
+      height: 100%
     }
     
   }
 
   &__tmp-switch {
     position: relative;
+    margin-left: 1rem;
   
     & span {
       color: #999;
@@ -244,6 +260,31 @@ a {
   
   }
 
+  @media only screen and (max-width: 1000px) {
+    &__search-form {
+      width: auto;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    &__tmp-switch {
+      order: 2;
+    }
+    
+    &__search-form {
+      margin-top: 1rem;
+      order: 3;
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 520px) {
+    justify-content: center;
+    
+    &__tmp-switch {
+      margin: 1rem 0;
+    }
+  }
 }
 
 @keyframes pulsate {
@@ -268,6 +309,7 @@ a {
 
   & > h2 {
     color: #fff;
+    font-weight: 100;
     margin-bottom: 3rem;
     text-shadow: 0 2px 2px rgba(0,0,0, .75);
   }
@@ -402,6 +444,21 @@ a {
       }
 
     }
+
+    @media only screen and (max-width: 440px) {
+        article {
+          min-width: 18rem;
+
+          ul {
+            display: flex;
+            flex-flow: row wrap;
+          }
+
+          li {
+            width: 50%;
+          }
+        }
+      }
   
   }
 
@@ -417,10 +474,6 @@ a {
   position: -webkit-sticky;
   position: sticky;
   
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   a:link,
   a:hover,
   a:visited {

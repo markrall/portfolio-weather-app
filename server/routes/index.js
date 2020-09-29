@@ -46,7 +46,6 @@ router.get(`/weather`, (req, res, next) => {
 
     }
     
-    // convert UTC timestamps using console.log(new Date(1597993200*1000)); and format using https://elijahmanor.com/format-js-dates-and-times
     res.send({ data });
 
   });

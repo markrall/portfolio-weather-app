@@ -2,8 +2,9 @@ extends layout
 
 block content
   .container
-    <h2>Current forecast for [Melbourne]</h2>
+    h2 Current forecast for 
+      span#wf-loc-name
     
     .weather-forecast  
-      section#wfc.weather-forecast__current
-      section#wfd.weather-forecast__daily
+      section#wfc.weather-forecast__current Loading...
+      section#wfd.weather-forecast__daily Loading...
