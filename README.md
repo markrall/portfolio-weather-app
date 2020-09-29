@@ -1,24 +1,16 @@
-## Todo list
-[ ] Complete search form styling
+<h1 align="center">Weather App</h1>
 
-[ ] Add forecast location (place_name)
+<p align="center">Weather app built with Node, Express, Pug, SASS, Mapbox, OpenWeather and Heroku.</p>
 
-[ ] Complete forecast output styling
+![demo](/public/images/cover.jpg?raw=true)
 
-[ ] Test geocode and forecast service input validation and error handling
+A personal project based on [The Complete Node.js Developer Course (3rd Edition)](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13819540#overview) by [Andrew Mead](https://www.udemy.com/user/andrewmead/) on Udemy. One of the projects involved building a basic weather app to search for a location and return the current weather conditions.
 
-[ ] Add language selection changer
+I decided to rebuild the app from memory using everything I'd learnt since taking the course. The major changes include:
 
-[ ] Consider implementing local storage to preserve user preference state
-
-[ ] Consider implementing testing framework
-
-[ ] Research hosting and deployment options
-
-[ ] Write up project notes
-
-[ ] Consider writing a tutorial
-
-[x] Define approach to dynamically rendering content using Pug and JS
-
-[x] Figure out how to turn time formating function into a reuseable module
+- Changing the weather service provider to OpenWeather
+- Integrating node-sass to write modular CSS
+- Adding `navigator.geolocation.getCurrentPosition` to detect the current location
+- Various utils methods for string, date and temperature conversion
+- Adding forward and reverse geocoding
+- Adding Axios to handle AJAX requests
