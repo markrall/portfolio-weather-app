@@ -1,8 +1,8 @@
-a<h1 align="center">Weather App</h1>
+<h1 align="center">Weather App</h1>
 
 <p align="center">Weather app built with Node, Express, Pug, SASS, Mapbox, OpenWeather and Heroku.</p>
 
-<p align="center"><a href="https://pure-citadel-53256.herokuapp.com/" title="Weather App demo">Demo</a></p>
+<p align="center"><a href="https://pure-citadel-53256.herokuapp.com/" title="Weather App demo" target="_blank">View the demo</a></p>
 
 ![demo](/public/images/cover.jpg?raw=true)
 

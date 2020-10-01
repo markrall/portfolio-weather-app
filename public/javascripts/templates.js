@@ -20,7 +20,7 @@ const iconURL = (icon, size) => {
             iconSize = '';
     }
 
-    return `<img src="http://openweathermap.org/img/wn/${icon}${iconSize}.png" />`;
+    return `<img src="https://openweathermap.org/img/wn/${icon}${iconSize}.png" />`;
 }
 
 const renderCurrentForecast = (forecast) => {
